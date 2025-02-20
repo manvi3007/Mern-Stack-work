@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: black;
+        color: white;
+      }
+      .container {
+        margin: 20px;
+      }
+      button {
+        margin: 10px;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Welcome to User Management</h2>
+    <div class="container">
+      <button onclick="showRegistration()">Register a User</button>
+      <button onclick="showUsers()">View Registered Users</button>
+    </div>
+
+    <div id="registrationForm" style="display: none">
+      <h3>User Registration</h3>
+      <input type="text" id="name" placeholder="Name" /><br /><br />
+      <input type="email" id="email" placeholder="Email" /><br /><br />
+      <input type="text" id="contact" placeholder="Contact" /><br /><br />
+      <input type="text" id="address" placeholder="Address" /><br /><br />
+      <button onclick="registerUser()">Register</button>
+    </div>
+
+    <div id="userTable" style="display: none">
+      <h3>Registered Users</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody id="userList"></tbody>
+      </table>
+      <button onclick="showRegistration()">Register More Users</button>
+    </div>
+
+    <script>
+      let users = [];
+
+      function showRegistration() {
+        document.getElementById("registrationForm").style.display = "block";
+        document.getElementById("userTable").style.display = "none";
+      }
+
+      function showUsers() {
+        document.getElementById("registrationForm").style.display = "none";
+        document.getElementById("userTable").style.display = "block";
+        displayUsers();
+      }
+
+      function registerUser() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let contact = document.getElementById("contact").value;
+        let address = document.getElementById("address").value;
+
+        if (name && email && contact && address) {
+          users.push({ name, email, contact, address });
+          alert("User registered successfully!");
+          document.getElementById("name").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("contact").value = "";
+          document.getElementById("address").value = "";
+        } else {
+          alert("Please fill in all fields.");
+        }
+      }
+
+      function displayUsers() {
+        let userList = document.getElementById("userList");
+        userList.innerHTML = "";
+        users.forEach((user) => {
+          let row = `<tr><td>${user.name}</td><td>${user.email}</td><td>${user.contact}</td><td>${user.address}</td></tr>`;
+          userList.innerHTML += row;
+        });
+      }
+    </script>
+  </body>
+</html>

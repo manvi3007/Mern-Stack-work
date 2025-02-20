@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Form Validation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .container {
+        max-width: 400px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-control.is-invalid {
+        border-color: red;
+      }
+      .form-control:focus {
+        box-shadow: none;
+      }
+      .input-group-text {
+        background: white;
+        border-right: none;
+      }
+      .invalid-feedback {
+        color: red;
+        font-size: 0.9rem;
+      }
+      .btn-submit {
+        background-color: red;
+        color: white;
+        width: 100%;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <form id="myForm" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <input type="text" class="form-control" id="name" required />
+          </div>
+          <div class="invalid-feedback">Name is required</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <div class="input-group">
+            <span class="input-group-text"
+              ><i class="fas fa-envelope"></i
+            ></span>
+            <input type="email" class="form-control" id="email" required />
+          </div>
+          <div class="invalid-feedback">Email is required</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              required
+            />
+          </div>
+          <div class="invalid-feedback">Password is required</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Hobbies</label>
+          <select class="form-control" id="hobbies">
+            <option selected disabled>Select your hobby</option>
+            <option>Reading</option>
+            <option>Sports</option>
+            <option>Music</option>
+            <option>Traveling</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          if (!this.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          this.classList.add("was-validated");
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
